@@ -24,6 +24,6 @@ Bei der Eingabe von Notizen können folgende Platzhalter benutzt werden, die aut
 
 | Name          | Alias         | wird umgewandelt zu                                      |
 | ------------- |---------------| ---------------------------------------------------------|
-| \:date\:        | \:datum\:       | Aktuelles Datum (TT.MM.JJJJ)                             |
+| `\:date\:`        | \:datum\:       | Aktuelles Datum (TT.MM.JJJJ)                             |
 | \:time\:        | \:zeit\:        | Aktuelle Uhrzeit (HH:MM:SS)                              |
 | \:now\:         | \:jetzt\:       | Aktuelles Datum + Uhrzeit inkl. Zeitzone und Wochentag   |
