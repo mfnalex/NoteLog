@@ -106,14 +106,23 @@ then
 	fi
 elif [ "$OPTION" == "list" ] || [ -z "$OPTION" ]
 then
+	if [ -z "$OPTION" ]
+	then
+		echo "*** Achtung: Keine Option übergeben. Nehme \"list\" an.***"
+		echo
+	fi
 	cd "${_PATH}"
-	#{
-		for f in $(ls -1)
-		do
-			echo -ne "$f:\033[50D\033[${len}C"
-			head -n1 "$f"
-		done
-	#} | column
+	FILES_PRESENT=0
+	for f in $(ls -1)
+	do
+		echo -ne "$f:\033[50D\033[${len}C"
+		head -n1 "$f"
+		FILES_PRESENT=$((FILES_PRESENT+1))
+	done
+	if [ "$FILES_PRESENT" -eq 0 ]
+	then
+		echo "*** Achtung: Keine Notizen gefunden. Benutze \"notelog help\" für mehr Infos.***"
+	fi
 elif [ "$OPTION" == "rm" ] || [ "$OPTION" == "delete" ] || [ "$OPTION" == "del" ]
 then
 	cd "$_PATH" || { echo "Fehler beim Löschen!"; exit 1; }
