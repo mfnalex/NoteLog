@@ -3,7 +3,7 @@
 # www.jeff-media.de
 # NoteLog by mfnalex
 
-VERSION=1.1
+VERSION=1.1.2
 OPTION="$1"
 INDEX="$2"
 DATA=""
