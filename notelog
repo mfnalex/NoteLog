@@ -98,7 +98,7 @@ then
 		PH_date=$(date +"%d.%m.%Y")
 		DATA=${DATA//:date:/$PH_date}
 		
-		echo "$DATA" > "${_PATH}/${INDEX}"
+		echo -e "$DATA" > "${_PATH}/${INDEX}"
 		echo "Inhalt zu \"$INDEX\" eingetragen:"
                 echo
                 cat "${_PATH}/${INDEX}"
