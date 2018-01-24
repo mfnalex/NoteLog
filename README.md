@@ -1,5 +1,5 @@
 # NoteLog
-Indexbasiertes Notizbuch für die BASH
+Indexbasiertes Notizbuch für die BASH :+1:
 
 ## Installation
 ```
