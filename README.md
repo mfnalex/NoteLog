@@ -20,10 +20,10 @@ Bestehende Notizen werden nur überschrieben, wenn ```setf``` anstatt ```set``` 
 Eine Notiz kann gelöscht werden mit ```notelog rm <name>``` bzw. ```notelog del[ete] <name>```.
 
 ## Verfügbare Platzhalter
-Bei der Eingabe von Notizen können folgende Platzhalter benutzt werden, die automatisch durch ihr jeweiliges Äquivalent ersetzt werden:
+Im Inhalt der Notizen können folgende Platzhalter benutzt werden, die automatisch durch ihr jeweiliges Äquivalent ersetzt werden:
 
 | Name          | Alias         | wird umgewandelt zu                                      |
 | ------------- |---------------| ---------------------------------------------------------|
 | `:date:`      | `:datum:`     | Aktuelles Datum (TT.MM.JJJJ)                             |
 | `:time:`      | `:zeit:`      | Aktuelle Uhrzeit (HH:MM:SS)                              |
-| `:now:`       | `:jetzt:`     | Aktuelles Datum + Uhrzeit inkl. Zeitzone und Wochentag   |
+| `:now:`       | `:jetzt:`     | Aktuelles Datum + Uhrzeit inkl. Zeitzone und Wochentag (z.B. Mi 24. Jan 16:19:47 CET 2018)  |
