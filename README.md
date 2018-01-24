@@ -11,7 +11,7 @@ sudo mv notelog /usr/local/bin/
 ## Benutzung
 Mit ```notelog help``` werden alle verfügbaren Optionen aufgelistet.
 
-Der Aufruf von notelog ohne Parameter werden alle angelegten Notizen gezeigt. Eine spezielle Notiz kann mit ```notelog get <name>``` angezeigt werden.
+Bei dem Aufruf von ```notelog``` ohne Parameter werden alle angelegten Notizen gezeigt. Eine spezielle Notiz kann mit ```notelog get <name>``` angezeigt werden.
 
 Neue Notizen können mit ```notelog set <name> <inhalt>``` angelegt werden. Bei der Eingabe können Platzhalter benutzt werden (siehe unten).
 
