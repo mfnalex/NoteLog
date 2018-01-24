@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# www.jeff-media.de
+# NoteLog by mfnalex
+
+VERSION=1.1
 OPTION="$1"
 INDEX="$2"
 DATA=""
@@ -37,16 +41,16 @@ done
 
 if [ "$OPTION" == "help" ] || [ "$OPTION" == "--help" ] || [ "$OPTION" == "-h" ]
 then
+	echo "NoteLog Version $VERSION (www.jeff-media.de)"
 	echo "Benutzung: notelog <option> <index>"
 	echo
 	echo "Optionen:"
-	{
-	echo -e "  get <INDEX>: \tZeigt Inhalt der Notiz <INDEX> an"
-	echo -e "  set <INDEX> <INHALT>: \tErstellt neue Notiz <INDEX> mit Inhalt <INHALT>"
-	echo -e "  setf <INDEX> <NEUER_INHALT>: \tErstellt neue oder ändert bestehende Notiz zu <NEUER_INHALT>"
-	echo -e "  list: \tZeigt Liste aller Notizen mit Vorschau."
-	} | column -s "\t"
-	
+	echo "  get <INDEX>:                 Zeigt Inhalt der Notiz <INDEX> an"
+	echo "  set <INDEX> <INHALT>:        Erstellt neue Notiz <INDEX> mit Inhalt <INHALT>"
+	echo "  setf <INDEX> <NEUER_INHALT>: Erstellt neue oder ändert bestehende Notiz zu <NEUER_INHALT>"
+	echo "  list:                        Zeigt Liste aller Notizen mit Vorschau"
+	echo "  rm <INDEX>:                  Löscht Notiz <INDEX>"
+	exit 0
 elif [ "$OPTION" == "get" ]
 then
 
