@@ -34,9 +34,20 @@ for file in `find $_PATH -type f` ; do
     
 done
 
-#echo $len $maxfile
 
-if [ "$OPTION" == "get" ]
+if [ "$OPTION" == "help" ] || [ "$OPTION" == "--help" ] || [ "$OPTION" == "-h" ]
+then
+	echo "Benutzung: notelog <option> <index>"
+	echo
+	echo "Optionen:"
+	{
+	echo -e "  get <INDEX>: \tZeigt Inhalt der Notiz <INDEX> an"
+	echo -e "  set <INDEX> <INHALT>: \tErstellt neue Notiz <INDEX> mit Inhalt <INHALT>"
+	echo -e "  setf <INDEX> <NEUER_INHALT>: \tErstellt neue oder ändert bestehende Notiz zu <NEUER_INHALT>"
+	echo -e "  list: \tZeigt Liste aller Notizen mit Vorschau."
+	} | column -d "\t"
+	
+elif [ "$OPTION" == "get" ]
 then
 
 	if [ -z "$INDEX" ]
