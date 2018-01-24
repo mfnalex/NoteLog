@@ -26,4 +26,4 @@ Im Inhalt der Notizen können folgende Platzhalter benutzt werden, die automatis
 | ------------- |---------------| ---------------------------------------------------------|
 | `:date:`      | `:datum:`     | Aktuelles Datum (TT.MM.JJJJ)                             |
 | `:time:`      | `:zeit:`      | Aktuelle Uhrzeit (HH:MM:SS)                              |
-| `:now:`       | `:jetzt:`     | Aktuelles Datum + Uhrzeit inkl. Zeitzone und Wochentag (z.B. Mi 24. Jan 16:19:47 CET 2018)  |
+| `:now:`       | `:jetzt:`     | Aktuelles Datum + Uhrzeit inkl. Zeitzone und Wochentag   |
