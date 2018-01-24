@@ -111,7 +111,7 @@ then
 		for f in $(ls -1)
 		do
 			echo -ne "$f:\033[50D\033[${len}C"
-			cat "$f"
+			head -n1 "$f"
 		done
 	#} | column
 elif [ "$OPTION" == "rm" ] || [ "$OPTION" == "delete" ] || [ "$OPTION" == "del" ]
