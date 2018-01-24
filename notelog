@@ -1,0 +1,124 @@
+#!/bin/bash
+
+OPTION="$1"
+INDEX="$2"
+DATA=""
+
+# Pfad OHNE abschließenden Schrägstrich
+_PATH=~/.notelog
+
+ERR_NOINDEX="Fehler: Gib einen Index an"
+ERR_CREATEPATH="Fehler beim Erstellen des Verzeichnisses $_PATH"
+OK_CREATEPATH="Verzeichnis $_PATH erstellt"
+
+if [ ! -d "$_PATH" ]
+then
+	mkdir "$_PATH"
+	if [ "$?" -ne 0 ]
+	then
+		echo "$ERR_CREATEPATH"
+		exit 1
+	else
+		echo "$OK_CREATEPATH"
+		cd "$_PATH"
+	fi	
+fi
+
+# Längsten Indexnamen für Listen-Funktion (vielleicht braucht man es noch für was anderes)
+maxlen=0
+
+for file in `find $_PATH -type f` ; do
+
+    len=`echo "${file}__" | gawk -F\/ '{printf "%s", $NF}' | wc -c` # Die zwei Unterstriche dienen nur dem Verlängern des Namens, damit wir nicht noch plus 2 rechnen müssen um das Leerzeichen und den Doppelpunkt abzubilden
+    [ $len -gt $maxlen ] && maxlen=$len && maxfile=$file
+    
+done
+
+#echo $len $maxfile
+
+if [ "$OPTION" == "get" ]
+then
+
+	if [ -z "$INDEX" ]
+	then
+		echo "$ERR_NOINDEX"
+		exit 1
+	else
+		if [ ! -f "${_PATH}/${INDEX}" ]
+		then
+			echo "Fehler: Index \"$INDEX\" nicht gefunden."
+			exit 1
+		else
+			echo "Inhalt zu \"$INDEX\":"
+			echo
+			cat "${_PATH}/${INDEX}"
+		fi
+	fi
+elif [ "$OPTION" == "set" ] || [ "$OPTION" == "setf" ]
+then
+	if [ -z "$INDEX" ]
+	then
+		echo "$ERR_NOINDEX"
+		exit 1
+	elif [ "$OPTION" != "setf" ] && [ -f "${_PATH}/${INDEX}" ]
+	then
+		echo "Fehler: Index \"$INDEX\" existiert schon. Zum Überschreiben nutze die Option \"setf\""
+		exit 1
+	else
+		shift 2
+		DATA="$@"
+
+		# Ersetze Platzhalter :now: bzw :jetzt: = Komplettes Datum
+		DATA=${DATA//:jetzt:/:now:}
+		PH_now=$(date)
+		DATA=${DATA//:now:/$PH_now}
+
+		# Ersetze Platzhalter :time: bzw :zeit:
+		DATA=${DATA//:zeit:/:time:}
+		PH_time=$(date +"%H:%M:%S")
+		DATA=${DATA//:time:/$PH_time}
+
+		# Ersetze Platzhalter :date: bzw :datum:
+		DATA=${DATA//:datum:/:date:}
+		PH_date=$(date +"%d.%m.%Y")
+		DATA=${DATA//:date:/$PH_date}
+		
+		echo "$DATA" > "${_PATH}/${INDEX}"
+		echo "Inhalt zu \"$INDEX\" eingetragen:"
+                echo
+                cat "${_PATH}/${INDEX}"
+		exit 0
+	fi
+elif [ "$OPTION" == "list" ] || [ -z "$OPTION" ]
+then
+	cd "${_PATH}"
+	#{
+		for f in $(ls -1)
+		do
+			echo -ne "$f:\033[50D\033[${len}C"
+			cat "$f"
+		done
+	#} | column
+elif [ "$OPTION" == "rm" ] || [ "$OPTION" == "delete" ] || [ "$OPTION" == "del" ]
+then
+	cd "$_PATH" || { echo "Fehler beim Löschen!"; exit 1; }
+	if [ -z "$INDEX" ]
+	then
+		echo "$ERR_NOINDEX"
+		exit 1
+	elif [ ! -f "$INDEX" ]
+	then
+		echo "Fehler: Index \"$INDEX\" nicht gefunden"
+		exit 1
+	fi
+	cd "$_PATH" || { echo "Fehler beim Löschen!"; exit 1; }
+	rm -i "$INDEX"
+	exit
+elif [ -f "${_PATH}/${OPTION}" ]
+then
+	$0 get "$OPTION"
+	exit
+else
+	echo "Fehler: Unbekannte Option \"$OPTION\""
+	exit 1
+fi
