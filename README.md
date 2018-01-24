@@ -1,5 +1,5 @@
 # NoteLog
-Indexbasiertes Notizbuch für die BASH :+1:
+Indexbasiertes Notizbuch für die BASH. Notizen werden gespeichert unter ```~/.notelog/```.
 
 ## Installation
 ```
