@@ -45,7 +45,7 @@ then
 	echo -e "  set <INDEX> <INHALT>: \tErstellt neue Notiz <INDEX> mit Inhalt <INHALT>"
 	echo -e "  setf <INDEX> <NEUER_INHALT>: \tErstellt neue oder ändert bestehende Notiz zu <NEUER_INHALT>"
 	echo -e "  list: \tZeigt Liste aller Notizen mit Vorschau."
-	} | column -d "\t"
+	} | column -s "\t"
 	
 elif [ "$OPTION" == "get" ]
 then
